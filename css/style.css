@@ -4,19 +4,14 @@
   font-family: "GothamPro Black";
   src: url("../fonts/gothampro_black.ttf");
 }
-@media all and (max-width: 1200px) {
+@media all and (max-width: 1400px) {
   :root {
     font-size: 15px;
   }
 }
-@media all and (max-width: 768px) {
+@media all and (max-width: 960px) {
   :root {
     font-size: 14px;
-  }
-}
-@media all and (max-width: 700px) {
-  :root {
-    font-size: 16px;
   }
 }
 
@@ -59,7 +54,7 @@ h2 {
 
 .accordeon {
   width: 100%;
-  height: 33.3333333333vw;
+  height: 33vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,6 +66,7 @@ h2 {
   overflow: hidden;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  position: relative;
 }
 .accordeon-item:nth-of-type(1n+2) {
   margin-left: -8vw;
@@ -136,6 +132,10 @@ h2 {
 .accordeon-item.active .accordeon-body {
   height: 100%;
   width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.accordeon-item.active .body-block {
+  opacity: 1;
 }
 .accordeon-item > div {
   display: -webkit-box;
@@ -149,8 +149,10 @@ h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 .accordeon-title {
+  z-index: 1;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -177,35 +179,40 @@ h2 {
     font-size: 1.9rem;
   }
 }
-@media all and (max-width: 750px) {
-  .accordeon-title h2 {
-    font-size: 1.5rem;
-  }
-}
 .accordeon-body {
+  z-index: 0;
   height: 0;
   width: 0;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: transparent;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 .accordeon-body .body-block {
-  width: 68%;
-  height: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+  width: 28vw;
+  height: inherit;
   font-family: "Roboto";
   font-weight: 300;
   line-height: 1;
   color: #333;
   font-size: 1rem;
+  opacity: 0;
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
 }
-@media all and (max-width: 1500px) {
+@media all and (max-width: 1100px) {
   .accordeon-body .body-block {
-    height: 80%;
-    font-size: 0.8rem;
-  }
-}
-@media all and (max-width: 1200px) {
-  .accordeon-body .body-block {
-    height: 100%;
-    font-size: 0.7rem;
+    gap: 0.8rem;
   }
 }
 .accordeon-body .body-block h2 {
@@ -213,30 +220,29 @@ h2 {
   font-size: 3rem;
   text-align: center;
 }
-@media all and (max-width: 1300px) {
+@media all and (max-width: 1500px) {
   .accordeon-body .body-block h2 {
-    font-size: 2.5rem;
-    margin: 20px 0;
+    margin-bottom: 10px;
+    font-size: 2.8rem;
   }
 }
-@media all and (max-width: 1000px) {
+@media all and (max-width: 1200px) {
   .accordeon-body .body-block h2 {
     font-size: 2rem;
   }
 }
-@media all and (max-width: 800px) {
+@media all and (max-width: 960px) {
   .accordeon-body .body-block h2 {
-    font-size: 1.5rem;
-    margin: 15px 0;
+    font-size: 1.6rem;
+    margin-bottom: 0;
   }
 }
 .accordeon-body .body-block h3 {
   font-weight: 700;
-  margin: 20px 0;
 }
-@media all and (max-width: 1000px) {
+@media all and (max-width: 1300px) {
   .accordeon-body .body-block h3 {
-    margin: 10px 0;
+    font-size: 1rem;
   }
 }
 .accordeon-body .body-block ul {
@@ -244,7 +250,7 @@ h2 {
 }
 .accordeon-body .body-block ul li {
   line-height: 1.5;
-  margin-bottom: 8px;
+  margin-bottom: 0.3rem;
   position: relative;
 }
 .accordeon-body .body-block ul li::before {
@@ -253,18 +259,23 @@ h2 {
   position: absolute;
   left: -20px;
 }
+@media all and (max-width: 1300px) {
+  .accordeon-body .body-block ul li {
+    font-size: 0.8rem;
+  }
+}
 @media all and (max-width: 900px) {
   .accordeon-body .body-block ul li {
     line-height: 1;
   }
 }
-@media all and (max-width: 700px) {
+@media all and (max-width: 767px) {
   .accordeon {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    height: 560px;
+    height: 500px;
   }
   .accordeon-item {
     -webkit-clip-path: none !important;
@@ -283,30 +294,43 @@ h2 {
     min-height: 60px !important;
   }
   .accordeon-title h2 {
+    font-size: 2.3rem;
     -webkit-transform: rotate(0) !important;
         -ms-transform: rotate(0) !important;
             transform: rotate(0) !important;
   }
   .accordeon-body {
     height: 0 !important;
+    padding: 0 1rem;
   }
   .accordeon-body h2 {
-    font-size: 1.5rem !important;
-    margin: 30px auto !important;
+    font-size: 2rem !important;
+    margin-bottom: 15px !important;
   }
   .accordeon-body .body-block {
-    width: 90%;
-    font-size: 0.8rem;
-  }
-  .accordeon-body .body-block h3 {
-    font-size: 0.8rem;
-    margin: 10px auto !important;
+    width: auto;
   }
   .accordeon-body .body-block ul {
     padding-left: 20px;
   }
   .accordeon-body .body-block li {
+    font-size: 1rem !important;
     line-height: 1.2 !important;
+  }
+}
+@media all and (max-width: 500px) {
+  .accordeon-title h2 {
+    font-size: 1.7rem;
+  }
+  .accordeon-body h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 12px !important;
+  }
+  .accordeon-body h3 {
+    font-size: 0.9rem !important;
+  }
+  .accordeon-body .body-block li {
+    font-size: 0.8rem !important;
   }
 }
 
